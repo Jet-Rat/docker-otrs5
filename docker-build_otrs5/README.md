@@ -1,5 +1,6 @@
 # docker-otrs5
 
+```
 sudo docker network create -d bridge otrs-net
 
 sudo docker run -d --name otrs-db \
@@ -16,3 +17,4 @@ sudo docker run -d --name otrs \
 --net otrs-net \
 -p 80:80 \
 jetrat/otrs5
+```
