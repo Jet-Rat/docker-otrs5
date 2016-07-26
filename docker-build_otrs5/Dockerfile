@@ -16,6 +16,7 @@ RUN apt-get update \
 		cron \
 		libapache2-mod-perl2 \
 		libarchive-zip-perl \
+		libauthen-sasl-perl \
 		libcrypt-eksblowfish-perl \
 		libcrypt-ssleay-perl \
 		libdbd-mysql-perl \
@@ -24,6 +25,7 @@ RUN apt-get update \
 		libio-socket-ssl-perl \
 		libjson-xs-perl \
 		libmail-imapclient-perl \
+		libmime-base64-perl \
 		libnet-dns-perl \
 		libnet-ldap-perl \
 		libtemplate-perl \

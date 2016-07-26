@@ -14,6 +14,7 @@ sed -i "s/DOCKER_DB_PASS/${OTRS_DB_PASS}/" ${OTRS_CONF};
 
 su -c "/opt/otrs/bin/otrs.Daemon.pl start" otrs
 
+service cron stop
 rm -f /var/run/crond.pid
 service cron start
 
