@@ -1,14 +1,17 @@
 FROM ubuntu:16.04
 
+ENV OTRS_VERSION 5.0.10
+ENV OTRS_HOME /opt/otrs
+
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		wget \
-	&& wget --progress=bar:force http://ftp.otrs.org/pub/otrs/otrs-5.0.10.tar.gz \
-	&& mkdir -p /opt/otrs \
-	&& echo "Extracting OTRS archive otrs-5.0.10.tar.gz" \
-	&& tar -xzf otrs-5.0.10.tar.gz -C /opt/otrs --strip 1 \
+	&& wget --progress=bar:force http://ftp.otrs.org/pub/otrs/otrs-${OTRS_VERSION}.tar.gz \
+	&& mkdir -p ${OTRS_HOME} \
+	&& echo "Extracting OTRS archive otrs-${OTRS_VERSION}.tar.gz" \
+	&& tar -xzf otrs-${OTRS_VERSION}.tar.gz -C ${OTRS_HOME} --strip 1 \
 	&& echo "Extraction finished" \
-	&& rm -rf /var/lib/apt/lists/* otrs-5.0.10.tar.gz
+	&& rm -rf /var/lib/apt/lists/* otrs-${OTRS_VERSION}.tar.gz
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -38,7 +41,6 @@ RUN apt-get update \
 		wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV OTRS_HOME /opt/otrs
 ENV ENTRYPOINT_FILE /usr/local/sbin/entrypoint.sh
 
 RUN a2enmod perl filter deflate headers \
