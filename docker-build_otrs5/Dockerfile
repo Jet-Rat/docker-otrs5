@@ -50,6 +50,7 @@ RUN a2enmod perl filter deflate headers \
 
 COPY Config.pm ${OTRS_HOME}/Kernel/Config.pm
 COPY entrypoint.sh ${ENTRYPOINT_FILE}
+COPY 000-default.conf /etc/apache2/sites-available/
 
 RUN useradd -G www-data -d ${OTRS_HOME} otrs \
 
