@@ -43,7 +43,8 @@ RUN apt-get update \
 
 ENV ENTRYPOINT_FILE /usr/local/sbin/entrypoint.sh
 
-RUN a2enmod perl filter deflate headers \
+RUN a2dismod mpm_event mpm_prefork \
+	&& a2enmod mpm_worker perl filter deflate headers \
 	&& ln -s ${OTRS_HOME}/scripts/apache2-httpd.include.conf /etc/apache2/sites-available/zzz_otrs.conf \
 	&& a2ensite zzz_otrs
 
