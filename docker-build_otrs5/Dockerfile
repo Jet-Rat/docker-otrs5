@@ -52,13 +52,17 @@ RUN a2dismod mpm_event mpm_prefork \
 COPY Config.pm ${OTRS_HOME}/Kernel/Config.pm
 COPY entrypoint.sh ${ENTRYPOINT_FILE}
 COPY 000-default.conf /etc/apache2/sites-available/
-COPY cron_apache_restart_workers.sh /etc/cron.hourly/
+COPY cron_apache_restart_workers /tmp
+
 
 RUN useradd -G www-data -d ${OTRS_HOME} otrs \
 
 	&& cp /opt/otrs/var/cron/aaa_base.dist /opt/otrs/var/cron/aaa_base \
 	&& cp /opt/otrs/var/cron/otrs_daemon.dist /opt/otrs/var/cron/otrs_daemon \
 	&& /opt/otrs/bin/Cron.sh start otrs \
+
+	&& cat /tmp/cron_apache_restart_workers | crontab - \
+	&& rm /tmp/cron_apache_restart_workers \
 	
 	&& ${OTRS_HOME}/bin/otrs.SetPermissions.pl --web-group=otrs \
 	&& chown www-data:www-data ${ENTRYPOINT_FILE} \
