@@ -22,3 +22,11 @@ sudo docker run -d --name otrs \
 -p 80:80 \
 jetrat/otrs5
 ```
+
+
+If you're running new OTRS instance, you have to finish installation via web
+
+* After running containers you have to open http://SERVER-IP:PORT/otrs/installer.pl in your browser
+* On step 2/4 choose existing MySQL database
+* On step 3/4 enter password from MYSQL_PASSWORD key (suP3rp244w0rds910tr4 by default)
+* On step 4/4 WRITE DOWN password for root@localhost
