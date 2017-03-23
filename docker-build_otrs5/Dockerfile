@@ -1,6 +1,6 @@
-FROM ubuntu:16.04
+FROM debian:8
 
-ENV OTRS_VERSION 5.0.10
+ENV OTRS_VERSION 5.0.17
 ENV OTRS_HOME /opt/otrs
 
 RUN apt-get update \
